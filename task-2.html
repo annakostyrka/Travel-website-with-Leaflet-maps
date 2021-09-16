@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css">
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <title>Travel Agency</title>
+
+    <script>
+        window.addEventListener ("load", function () {
+
+            function mapShow (mapId) {
+                let mapWrap = document.getElementById(mapId);
+                let center = L.latLng(mapWrap.dataset.longitude,mapWrap.dataset.latitude);
+                mapWrap.style.display = "block";
+                let map = L.map(mapWrap).setView(center,13);
+                L.tileLayer (
+                'https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    maxZoom: 18
+                }).addTo(map);
+                L.marker(center).addTo(map);
+                mapWrap.style.marginBottom = "30px";
+            }
+
+            function mapHide (mapId) {
+                let mapWrap = L.DomUtil.get(mapId);
+                    if(mapWrap != null){
+                        mapWrap._leaflet_id = null;
+                    }
+                    mapWrap.style.display = "none";
+            }
+
+            let hotels = document.getElementsByClassName("hotel");
+
+            let opened = false;
+
+            for (let i = 0; i < hotels.length; i++) {
+                let btn = document.getElementsByTagName("button")[i];
+
+                btn.addEventListener ("click", function (e) {
+                    
+                    if (btn.innerText == "Закрити мапу"){
+                        mapHide (e.target.dataset.mapid);
+                        
+                        btn.innerText = "Дивитися на мапі";
+                        
+                    } else {
+                        opened = true;
+                        mapShow (e.target.dataset.mapid);
+                        btn.innerText = "Закрити мапу";
+                       
+                    }
+
+                    
+                    
+                });
+            }
+            
+
+        });
+    </script>
+</head>
+<body>
+<div class="container">
+    <header>
+        <div class="logo-wrapper">
+            <img src="img/travel-logo.jpeg" alt="">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Усі тури</a></li>
+                <li><a href="#">Послуги</a></li>
+                <li><a href="#">Статті</a></li>
+                <li><a href="#">Контакти</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section>
+        <div class="hotel">
+            <div class="thumb"><img src="img/hotel1.jpg" alt=""></div>
+            <div class="hotel-info">
+                <h2>Ideal Prime Beach 5*</h2>
+                <div class="subtitle">Туреччина, Мармарис</div>
+                <div class="descr">Готель розташований в 2,5 км від центру м Мармарис. Готель був відкритий в 2011 році, останній ремонт проводився в 2019 році. Компактна, але досить зелена територія. Готель підходить для сімейного відпочинку, романтичного відпочинку і молоді.</div>
+                <button data-mapid="hotel1">Дивитися на мапі</button>
+            </div>
+        </div>
+        <div id="hotel1" class="output" data-longitude='36.834557' data-latitude='28.2427747' style="width: 100%; height: 300px; display:none"></div>
+        <div class="hotel">
+            <div class="thumb"><img src="img/hotel2.jpg" alt=""></div>
+            <div class="hotel-info">
+                <h2>Letoonia Club & Hotel 5*</h2>
+                <div class="subtitle">Туреччина, Фетхіє</div>
+                <div class="descr">Готель розташований в одному з найкрасивіших місць на Егейському узбережжі - Фетхіє, на великий, красивою, що потопає в зелені території. Готель на першій лінії, займає цілий півострів. Готель був відкритий в 1989 році, остання реставрація проводилась в 2017-18 роках. Підходить для сімейного, молодіжного та романтичного відпочинку.</div>
+                <button data-mapid="hotel2">Дивитися на мапі</button>
+            </div>
+        </div>
+        <div id="hotel2" class="output" data-longitude='36.6348793' data-latitude='29.0971179' style="width: 100%; height: 300px; display:none"></div>
+        <div class="hotel">
+            <div class="thumb"><img src="img/hotel3.jpg" alt=""></div>
+            <div class="hotel-info">
+                <h2>Liberty Hotels Lykia HV1</h2>
+                <div class="subtitle">Туреччина, Фетхіє</div>
+                <div class="descr">Готель був відкритий в 1991 році, останній ремонт проводився в 2014 році. Комплекс складається з двох готелів: Sentido Liberty Resort & SPA і Liberty Hotels Lykia. Величезна зелена територія готелю. Готель підходить для сімейного та молодіжного відпочинку.</div>
+                <button data-mapid="hotel3">Дивитися на мапі</button>
+            </div>
+        </div>
+        <div id="hotel3" class="output" data-longitude='36.5241307' data-latitude='29.1258824' style="width: 100%; height: 300px; display:none"></div>
+        <div class="hotel">
+            <div class="thumb"><img src="img/hotel4.jpg" alt=""></div>
+            <div class="hotel-info">
+                <h2>Nirvana Dolce Vita 5*</h2>
+                <div class="subtitle">Туреччина, Кемер</div>
+                <div class="descr">Готель Amara Dolce Vita був побудований в 2007 році, остання реновація пройшла в 2017 році. Складається з шестиповерхового будинку Deluxe Venezia, триповерхової будівлі Deluxe Capri, триповерхової будівлі Deluxe Portofino, трьох - і чотириповерхових корпусів Club (представлені у вигляді Roma і Istanbul Street) і вісімнадцяти двоповерхових вілл. Рекомендується для вимогливих туристів, сімейного відпочинку.</div>
+                <button data-mapid="hotel4">Дивитися на мапі</button>
+            </div>
+        </div>
+        <div id="hotel4" class="output" data-longitude='36.4862249' data-latitude='30.5209363' style="width: 100%; height: 300px; display:none"></div>
+    </section>
+</div>
+<footer>
+    <div class="copyright">2021© Travel Agency. Усі права захищені </div>
+</footer>
+</body>
+</html>
