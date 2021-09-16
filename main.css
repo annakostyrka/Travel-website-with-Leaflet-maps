@@ -81,11 +81,11 @@ nav a:hover {
     background: linear-gradient(217deg, rgba(255, 105, 247, 0.747), rgba(28, 51, 184, 0.603) 70.71%),
             linear-gradient(127deg, rgba(96, 215, 219, 0.8), rgba(50, 181, 241, 0.849) 70.71%),
             linear-gradient(336deg, rgba(129, 49, 204, 0.8), rgba(0,0,255,0) 70.71%);
-    cursor: pointer;`~
+    cursor: pointer;
 }
 
 footer {
-    background-color:rgba(28, 51, 184, 71%);
+    background-color: rgba(28, 51, 184,0.71);
     padding: 20px;
     color: #fff;
 }
